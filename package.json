@@ -1,0 +1,22 @@
+{
+  "name": "recorder",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/huangjq148/recorder.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/huangjq148/recorder/issues"
+  },
+  "homepage": "https://github.com/huangjq148/recorder#readme",
+  "dependencies": {
+    "wux-weapp": "^3.8.5"
+  }
+}
