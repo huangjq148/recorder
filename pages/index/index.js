@@ -4,51 +4,60 @@ const app = getApp()
 
 Page({
   data: {
-    motto: 'Hello World',
-    userInfo: {},
-    hasUserInfo: false,
-    canIUse: wx.canIUse('button.open-type.getUserInfo')
+    originList: [],
+    list: [],
+    current: 1,
+    pageSize: 8,
+    totalPage: 10
   },
-  //事件处理函数
-  bindViewTap: function() {
-    wx.navigateTo({
-      url: '../logs/logs'
-    })
-  },
+
   onLoad: function () {
-    if (app.globalData.userInfo) {
-      this.setData({
-        userInfo: app.globalData.userInfo,
-        hasUserInfo: true
-      })
-    } else if (this.data.canIUse){
-      // 由于 getUserInfo 是网络请求，可能会在 Page.onLoad 之后才返回
-      // 所以此处加入 callback 以防止这种情况
-      app.userInfoReadyCallback = res => {
-        this.setData({
-          userInfo: res.userInfo,
-          hasUserInfo: true
-        })
-      }
-    } else {
-      // 在没有 open-type=getUserInfo 版本的兼容处理
-      wx.getUserInfo({
-        success: res => {
-          app.globalData.userInfo = res.userInfo
-          this.setData({
-            userInfo: res.userInfo,
-            hasUserInfo: true
-          })
-        }
+    this._loadData();
+    this._filterData("");
+  },
+
+  //加载数据
+  _loadData(){
+    let { pageSize } = this.data;
+    let originList = [];
+    let prices = ["进价","售价"]
+    for (let i = 0; i < pageSize; i++) {
+      originList.push({
+        pinming: `药品${(this.data.current - 1) * pageSize + i + 1}`,
+        price: (Math.random() * 10).toFixed(2),
+        type: prices[parseInt(Math.random() * 10) % 2],
+        date: "2020-02-03"
       })
     }
-  },
-  getUserInfo: function(e) {
-    console.log(e)
-    app.globalData.userInfo = e.detail.userInfo
+
     this.setData({
-      userInfo: e.detail.userInfo,
-      hasUserInfo: true
+      originList
     })
+  },
+
+  //过滤数据
+  _filterData(keyWord){
+    let list = this.data.originList.filter(item => {
+      return item.pinming.indexOf(keyWord) >= 0;
+    })
+
+    this.setData({
+      list
+    })
+  },
+
+  //输入框改变
+  onChange(e){
+    this._filterData(e.detail.value)
+  },
+
+  //分页改变
+  onChangePage(e){
+    this.setData({
+      current: e.detail.current,
+    })
+
+    this._loadData();
+    this._filterData("");
   }
 })

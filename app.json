@@ -1,7 +1,7 @@
 {
   "pages": [
-    "pages/mine/index/index",
     "pages/index/index",
+    "pages/mine/index/index",
     "pages/logs/logs"
   ],
   "window": {
@@ -17,12 +17,12 @@
     "borderStyle": "white",
     "list": [
       {
-        "pagePath": "pages/mine/index/index",
-        "text": "我的"
-      },
-      {
         "pagePath": "pages/index/index",
         "text": "首页"
+      },
+      {
+        "pagePath": "pages/mine/index/index",
+        "text": "我的"
       }
     ],
     "position": "bottom",
@@ -33,6 +33,10 @@
   "usingComponents": {
     "wux-button": "/miniprogram_npm/wux-weapp/button/index",
     "wux-row": "/miniprogram_npm/wux-weapp/row/index",
-    "wux-col": "/miniprogram_npm/wux-weapp/col/index"
+    "wux-col": "/miniprogram_npm/wux-weapp/col/index",
+    "wux-cell-group": "/miniprogram_npm/wux-weapp/cell-group/index",
+    "wux-cell": "/miniprogram_npm/wux-weapp/cell/index",
+    "wux-search-bar": "/miniprogram_npm/wux-weapp/search-bar/index",
+    "wux-pagination": "/miniprogram_npm/wux-weapp/pagination/index"
   }
 }

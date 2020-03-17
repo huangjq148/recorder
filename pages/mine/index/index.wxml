@@ -15,12 +15,14 @@
 <view class="container">
   <view class="userinfo">
     <button wx:if="{{!hasUserInfo && canIUse}}" open-type="getUserInfo" bindgetuserinfo="getUserInfo"> 获取头像昵称 </button>
-    <block wx:else>
+    <block wx:else class="userinfo">
       <image bindtap="bindViewTap" class="userinfo-avatar" src="{{userInfo.avatarUrl}}" mode="cover"></image>
       <text class="userinfo-nickname">{{userInfo.nickName}}</text>
     </block>
   </view>
-  <view class="usermotto">
-    <text class="user-motto">{{motto}}</text>
+  <view class="menus">
+    <wux-cell-group title="带跳转的列表项">
+        <wux-cell title="查看登陆日志" is-link url="/pages/logs/logs"></wux-cell>
+    </wux-cell-group>
   </view>
 </view>
