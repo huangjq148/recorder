@@ -7,7 +7,21 @@ Page({
     motto: 'Hello World',
     userInfo: {},
     hasUserInfo: false,
-    canIUse: wx.canIUse('button.open-type.getUserInfo')
+    canIUse: wx.canIUse('button.open-type.getUserInfo'),
+    menus: [
+      {
+        name: "查看登陆日志",
+        url: "/pages/logs/logs"
+      },
+      {
+        name: "新增交易记录",
+        url: "/pages/recorder/edit/index"
+      },
+      {
+        name: "交易统计",
+        url: "/pages/recorder/statis/index"
+      }
+    ]
   },
   //事件处理函数
   bindViewTap: function () {

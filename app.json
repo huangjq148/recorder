@@ -1,8 +1,12 @@
 {
   "pages": [
-    "pages/index/index",
+    "pages/recorder/list/index",
+    "pages/recorder/edit/index",
     "pages/mine/index/index",
-    "pages/logs/logs"
+    "pages/logs/logs",
+    "pages/recorder/statis/index",
+    "pages/goods/list/index",
+    "pages/goods/edit/index"
   ],
   "window": {
     "backgroundTextStyle": "light",
@@ -17,7 +21,7 @@
     "borderStyle": "white",
     "list": [
       {
-        "pagePath": "pages/index/index",
+        "pagePath": "pages/recorder/list/index",
         "text": "首页"
       },
       {
@@ -25,7 +29,6 @@
         "text": "我的"
       }
     ],
-    "position": "bottom",
     "custom": false
   },
   "style": "v2",
@@ -37,6 +40,24 @@
     "wux-cell-group": "/miniprogram_npm/wux-weapp/cell-group/index",
     "wux-cell": "/miniprogram_npm/wux-weapp/cell/index",
     "wux-search-bar": "/miniprogram_npm/wux-weapp/search-bar/index",
-    "wux-pagination": "/miniprogram_npm/wux-weapp/pagination/index"
+    "wux-pagination": "/miniprogram_npm/wux-weapp/pagination/index",
+    "wux-form": "/miniprogram_npm/wux-weapp/form/index",
+    "wux-field": "/miniprogram_npm/wux-weapp/field/index",
+    "wux-slider": "/miniprogram_npm/wux-weapp/slider/index",
+    "wux-rater": "/miniprogram_npm/wux-weapp/rater/index",
+    "wux-input-number": "/miniprogram_npm/wux-weapp/input-number/index",
+    "wux-textarea": "/miniprogram_npm/wux-weapp/textarea/index",
+    "wux-input": "/miniprogram_npm/wux-weapp/input/index",
+    "wux-checkbox-group": "/miniprogram_npm/wux-weapp/checkbox-group/index",
+    "wux-checkbox": "/miniprogram_npm/wux-weapp/checkbox/index",
+    "wux-radio-group": "/miniprogram_npm/wux-weapp/radio-group/index",
+    "wux-radio": "/miniprogram_npm/wux-weapp/radio/index",
+    "wux-switch": "/miniprogram_npm/wux-weapp/switch/index",
+    "wux-picker": "/miniprogram_npm/wux-weapp/picker/index",
+    "wux-date-picker": "/miniprogram_npm/wux-weapp/date-picker/index",
+    "wux-popup-select": "/miniprogram_npm/wux-weapp/popup-select/index",
+    "wux-card": "/miniprogram_npm/wux-weapp/card/index",
+    "wux-wing-blank": "/miniprogram_npm/wux-weapp/wing-blank/index",
+    "wux-filterbar": "/miniprogram_npm/wux-weapp/filterbar/index"
   }
 }

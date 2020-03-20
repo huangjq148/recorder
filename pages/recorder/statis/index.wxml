@@ -1,0 +1,25 @@
+<!--pages/recorder/statis/index.wxml-->
+<view class="page">
+  <wux-wing-blank size="small">
+    <view class="header">
+      交易总览
+    </view>
+  </wux-wing-blank>
+  <wux-wing-blank size="default">
+    <wux-card title="本月支出" bordered="{{ false }}">
+      <view slot="body">￥8040.00</view>
+    </wux-card>
+  </wux-wing-blank>
+
+  <wux-wing-blank size="default" class="margin-top-100">
+    <wux-card title="本月收入" bordered="{{ false }}">
+      <view slot="body">￥4040.00</view>
+    </wux-card>
+  </wux-wing-blank>
+
+  <wux-wing-blank size="default" class="margin-top-100">
+    <wux-card title="本月利润" bordered="{{ false }}">
+      <view slot="body">￥-4000.00</view>
+    </wux-card>
+  </wux-wing-blank>
+</view>

@@ -1,0 +1,10 @@
+/* pages/recorder/statis/index.wxss */
+.header{
+  padding: 40rpx 5% 40rpx 5%;
+  font-size: 60rpx;
+  font-weight: bold;
+}
+
+.margin-top-100{
+  margin-top: 100rpx;
+}

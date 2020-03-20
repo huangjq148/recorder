@@ -1,0 +1,31 @@
+<!--pages/recorder/edit/index.wxml-->
+<view class="page">
+  <view class="header">
+      新增交易记录
+  </view>
+  <wux-form bindsubmit="formSubmit" id="wux-form" bind:change="onFormFiledChange">
+    <wux-cell hover-class="none">
+      <wux-field name="pinming" initialValue="">
+        <wux-input label="品名" />
+      </wux-field>
+    </wux-cell>
+    <wux-cell title="{{types[formData.type]}}">
+      <wux-field name="switch" initialValue="{{ 1 }}" valuePropName="inputChecked" slot="footer">
+        <wux-switch />
+      </wux-field>
+    </wux-cell>
+    <wux-cell title="数量" hover-class="none">
+      <wux-field name="number" initialValue="{{ 1 }}" color="light" slot="footer" disabled="{{ false }}">
+        <wux-input-number shape="circle" />
+      </wux-field>
+
+    </wux-cell>
+    <wux-cell title="价格" hover-class="none">
+      <wux-field name="price" initialValue="{{ 1 }}" color="light" slot="footer" disabled="{{ false }}">
+        <wux-input-number shape="circle" />
+      </wux-field>
+    </wux-cell>
+    <wux-button class="submit-btn" block type="positive" bindtap="onSubmit">提交</wux-button>
+
+  </wux-form>
+</view>
