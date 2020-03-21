@@ -1,11 +1,11 @@
 {
   "pages": [
-    "pages/recorder/list/index",
-    "pages/recorder/edit/index",
-    "pages/mine/index/index",
-    "pages/logs/logs",
-    "pages/recorder/statis/index",
     "pages/goods/list/index",
+    "pages/trade/list/index",
+    "pages/trade/edit/index",
+    "pages/mine/index/index",
+    "pages/trade/statis/index",
+    "pages/logs/logs",
     "pages/goods/edit/index"
   ],
   "window": {
@@ -21,8 +21,12 @@
     "borderStyle": "white",
     "list": [
       {
-        "pagePath": "pages/recorder/list/index",
-        "text": "首页"
+        "pagePath": "pages/goods/list/index",
+        "text": "商品"
+      },
+      {
+        "pagePath": "pages/trade/list/index",
+        "text": "交易记录"
       },
       {
         "pagePath": "pages/mine/index/index",

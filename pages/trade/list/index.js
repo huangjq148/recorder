@@ -1,6 +1,7 @@
 //index.js
 //获取应用实例
 const app = getApp()
+const tradeService = require("../../../service/trade")
 
 Page({
   data: {
@@ -10,6 +11,10 @@ Page({
     pageSize: 10,
     totalPage: 10,
     keyword: "",
+    page: {
+      currentPage: 1,
+      pageSize: 9
+    },
     items: [{
         type: 'radio',
         label: '交易类型',
@@ -52,23 +57,32 @@ Page({
 
   //加载数据
   _loadData() {
-    let {
-      pageSize
-    } = this.data;
-    let originList = [];
-    let prices = ["进价", "售价"]
-    for (let i = 0; i < pageSize; i++) {
-      originList.push({
-        pinming: `药品${(this.data.current - 1) * pageSize + i + 1}`,
-        price: (Math.random() * 10).toFixed(2),
-        type: prices[parseInt(Math.random() * 10) % 2],
-        date: "2020-02-03"
+    const _this = this;
+    const page = this.data.page
+    tradeService.getList({ ...page }).then(res=>{
+      debugger;
+      _this.setData({
+        list: res.resultObject,
+        totalPage: Math.ceil(res.totalRecord / _this.data.page.pageSize)
       })
-    }
-
-    this.setData({
-      originList
     })
+    // let {
+    //   pageSize
+    // } = this.data;
+    // let originList = [];
+    // let prices = ["进价", "售价"]
+    // for (let i = 0; i < pageSize; i++) {
+    //   originList.push({
+    //     pinming: `药品${(this.data.current - 1) * pageSize + i + 1}`,
+    //     price: (Math.random() * 10).toFixed(2),
+    //     type: prices[parseInt(Math.random() * 10) % 2],
+    //     date: "2020-02-03"
+    //   })
+    // }
+
+    // this.setData({
+    //   originList
+    // })
   },
 
   //过滤数据

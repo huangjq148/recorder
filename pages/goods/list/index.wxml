@@ -1,2 +1,13 @@
-<!--pages/goods/index.wxml-->
-<text>pages/goods/index.wxml</text>
+<!--index.wxml-->
+<view class="container">
+  <wux-search-bar clear maxlength="8" bind:change="onChange"/>
+
+  <wux-cell-group>
+      <wux-cell wx:for="{{list}}" title="{{item.pinming}}" is-link url="../edit/index"  label="进价：{{item.jinjia}}，规格：{{item.guige}}"></wux-cell>
+  </wux-cell-group>
+
+  <wux-pagination current="{{ current }}" total="{{totalPage}}" mode="button" controlled bind:change="onChangePage">
+    <view slot="prev">Prev</view>
+    <view slot="next">Next</view>
+  </wux-pagination>
+</view>

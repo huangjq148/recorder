@@ -1,6 +1,7 @@
 //app.js
 import { $wuxForm } from "./miniprogram_npm/wux-weapp/index"
 import config from "./config/index"
+import {request} from "./utils/request"
 App({
   onLaunch: function () {
     // 展示本地存储能力
@@ -10,6 +11,7 @@ App({
 
     this.$wuxForm = $wuxForm
     this.config = config
+    this.request = request
 
     // 登录
     wx.login({
