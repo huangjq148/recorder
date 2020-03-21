@@ -13,7 +13,15 @@ Page({
     page:{
       currentPage: 1, 
       pageSize: 9
-    }
+    },
+    right: [{
+      text: '取消',
+      style: 'background-color: #ddd; color: white',
+    },
+    {
+      text: '删除',
+      style: 'background-color: #F4333C; color: white',
+    }]
   },
 
   onLoad: function () {
@@ -53,11 +61,18 @@ Page({
     this.setData({
       keyword: e.detail.value
     })
-    this._filterData()
+    // this._filterData()
   },
 
   onChangeFilter() {
 
+  },
+
+  /**
+   * 生命周期函数--监听页面显示
+   */
+  onShow: function () {
+    this._loadData()
   },
 
   //分页改变
@@ -69,5 +84,26 @@ Page({
 
     this._loadData();
     this._filterData();
+  },
+
+  onClick(e){
+    if(e.detail.value.text == "取消")return;
+    let _this = this;
+    let { item } = e.currentTarget.dataset
+    debugger;
+    wx.showModal({
+      title: `是否删除该条数据？`,
+      success: function(){
+        goodsService.deleteById(item.id).then(res => {
+          wx.showToast({
+            title: '删除成功',
+          })
+          _this._loadData()
+        })
+      },
+      fail(){
+        debugger;
+      }
+    })
   }
 })

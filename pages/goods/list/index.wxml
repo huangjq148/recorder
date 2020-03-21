@@ -3,7 +3,10 @@
   <wux-search-bar clear maxlength="8" bind:change="onChange"/>
 
   <wux-cell-group>
-      <wux-cell wx:for="{{list}}" title="{{item.pinming}}" is-link url="../edit/index"  label="进价：{{item.jinjia}}，规格：{{item.guige}}"></wux-cell>
+    <wux-swipe-action wx:for="{{list}}" data-item="{{item}}" autoClose right="{{ right }}" bind:click="onClick">
+        <wux-cell  title="{{item.pinming}}" is-link url="../edit/index?id={{item.id}}"  label="进价：{{item.jinjia}}，规格：{{item.guige}}"></wux-cell>
+    </wux-swipe-action>
+      
   </wux-cell-group>
 
   <wux-pagination current="{{ current }}" total="{{totalPage}}" mode="button" controlled bind:change="onChangePage">

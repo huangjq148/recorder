@@ -1,4 +1,6 @@
-// pages/goods/edit/index.js
+// pages/recorder/edit/index.js
+const { $wuxForm } = getApp();
+const goodsService = require("../../../service/goods")
 Page({
 
   /**
@@ -6,13 +8,59 @@ Page({
    */
   data: {
 
+    types: {
+      "0": "进货",
+      "1": "出货"
+    },
+    formData: {
+      type: "0"
+    }
   },
+
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    let _this = this
+    const { setFieldsValue } = $wuxForm()
+    if(options.id){
+      goodsService.getInfoById(options.id).then(res => {
+        setFieldsValue(res)
+      })
+    }
+  },
 
+  onTypeChange(e) {
+    this.onChange('type', e)
+  },
+
+  onChange(field, e) {
+    this.setData({
+      [field]: e.detail.value
+    })
+  },
+
+
+  onFormFiledChange(e) {
+    const { form, changedValues, allValues } = e.detail
+
+    console.log('onChange \n', changedValues, allValues)
+  },
+
+  //提交表单
+  onSubmit() {
+    const { getFieldsValue, getFieldValue, setFieldsValue } = $wuxForm()
+    const value = getFieldsValue()
+    goodsService.save(value).then(res=>{
+      wx.showToast({
+        title: '保存成功',
+      })
+      wx.navigateBack({
+        delta:1
+      })
+    })
+    console.log(value)
   },
 
   /**
@@ -62,5 +110,7 @@ Page({
    */
   onShareAppMessage: function () {
 
-  }
+  },
+
+
 })

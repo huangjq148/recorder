@@ -1,6 +1,6 @@
 const { request } = getApp()
 
-exports.getList = function(){
+exports.getList = function (data){
   return request({
     url: "/trade/list",
     method: 'POST',

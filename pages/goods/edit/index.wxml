@@ -1,2 +1,35 @@
-<!--pages/goods/edit/index.wxml-->
-<text>pages/goods/edit/index.wxml</text>
+<!--pages/recorder/edit/index.wxml-->
+<view class="page">
+  <view class="header">
+      新增商品信息
+  </view>
+  <wux-form bindsubmit="formSubmit" id="wux-form" bind:change="onFormFiledChange">
+    <wux-cell hover-class="none">
+      <wux-field name="pinming" initialValue="">
+        <wux-input label="品名" />
+      </wux-field>
+    </wux-cell>
+    <wux-cell hover-class="none">
+      <wux-field name="guige" initialValue="">
+        <wux-input label="规格" />
+      </wux-field>
+    </wux-cell>
+    <wux-cell hover-class="none">
+      <wux-field name="danwei" initialValue="">
+        <wux-input label="单位" />
+      </wux-field>
+    </wux-cell>
+    <wux-cell hover-class="none">
+      <wux-field name="jinjia" initialValue="">
+        <wux-input label="进价" />
+      </wux-field>
+    </wux-cell>
+    <wux-cell hover-class="none">
+      <wux-field name="remark" initialValue="">
+        <wux-input label="备注" />
+      </wux-field>
+    </wux-cell>
+    <wux-button class="submit-btn" block type="positive" bindtap="onSubmit">提交</wux-button>
+
+  </wux-form>
+</view>

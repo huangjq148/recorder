@@ -14,6 +14,10 @@ Page({
         url: "/pages/logs/logs"
       },
       {
+        name: "新增商品",
+        url: "/pages/goods/edit/index"
+      },
+      {
         name: "新增交易记录",
         url: "/pages/recorder/edit/index"
       },

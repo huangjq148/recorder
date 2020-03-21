@@ -1,1 +1,12 @@
-/* pages/goods/edit/index.wxss */
+.header{
+  padding: 40rpx 5% 40rpx 5%;
+  font-size: 60rpx;
+  font-weight: bold;
+}
+.submit-btn{
+  position: absolute;
+  width: 90%;
+  bottom: 0px;
+  left: 5%;
+
+}

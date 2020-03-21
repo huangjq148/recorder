@@ -1,12 +1,12 @@
 {
   "pages": [
     "pages/goods/list/index",
+    "pages/goods/edit/index",
     "pages/trade/list/index",
     "pages/trade/edit/index",
     "pages/mine/index/index",
     "pages/trade/statis/index",
-    "pages/logs/logs",
-    "pages/goods/edit/index"
+    "pages/logs/logs"
   ],
   "window": {
     "backgroundTextStyle": "light",
@@ -22,14 +22,20 @@
     "list": [
       {
         "pagePath": "pages/goods/list/index",
+        "iconPath": "images/tabbar/home.png",
+        "selectedIconPath": "images/tabbar/home_selected.png",
         "text": "商品"
       },
       {
         "pagePath": "pages/trade/list/index",
+        "iconPath": "images/tabbar/list.png",
+        "selectedIconPath": "images/tabbar/list_selected.png",
         "text": "交易记录"
       },
       {
         "pagePath": "pages/mine/index/index",
+        "iconPath": "images/tabbar/mine.png",
+        "selectedIconPath": "images/tabbar/mine_selected.png",
         "text": "我的"
       }
     ],
@@ -62,6 +68,8 @@
     "wux-popup-select": "/miniprogram_npm/wux-weapp/popup-select/index",
     "wux-card": "/miniprogram_npm/wux-weapp/card/index",
     "wux-wing-blank": "/miniprogram_npm/wux-weapp/wing-blank/index",
+    "wux-swipe-action-group": "/miniprogram_npm/wux-weapp/swipe-action-group/index",
+    "wux-swipe-action": "/miniprogram_npm/wux-weapp/swipe-action/index",
     "wux-filterbar": "/miniprogram_npm/wux-weapp/filterbar/index"
   }
 }
