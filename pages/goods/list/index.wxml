@@ -1,6 +1,6 @@
 <!--index.wxml-->
 <view class="container">
-  <wux-search-bar clear maxlength="8" bind:change="onChange"/>
+  <wux-search-bar clear maxlength="8" bind:confirm="onChange"/>
 
   <wux-cell-group>
     <wux-swipe-action wx:for="{{list}}" data-item="{{item}}" autoClose right="{{ right }}" bind:click="onClick">

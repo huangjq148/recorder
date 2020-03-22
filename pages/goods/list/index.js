@@ -10,8 +10,11 @@ Page({
     current: 1,
     totalPage: 10,
     keyword: "",
-    page:{
-      currentPage: 1, 
+    searchForm: {
+
+    },
+    page: {
+      currentPage: 1,
       pageSize: 9
     },
     right: [{
@@ -32,8 +35,9 @@ Page({
   //加载数据
   _loadData() {
     const _this = this;
-    const page = this.data.page
-    goodsService.getGoodList({ ...page }).then(res=>{
+    const { searchForm, page } = this.data
+    debugger;
+    goodsService.getGoodList({ whereMap: searchForm, ...page }).then(res => {
       _this.setData({
         list: res.resultObject,
         totalPage: Math.ceil(res.totalRecord / _this.data.page.pageSize)
@@ -59,8 +63,9 @@ Page({
   //输入框改变
   onChange(e) {
     this.setData({
-      keyword: e.detail.value
+      ["searchForm.pinming_like"]: e.detail.value
     })
+    this._loadData();
     // this._filterData()
   },
 
@@ -86,14 +91,13 @@ Page({
     this._filterData();
   },
 
-  onClick(e){
-    if(e.detail.value.text == "取消")return;
+  onClick(e) {
+    if (e.detail.value.text == "取消") return;
     let _this = this;
     let { item } = e.currentTarget.dataset
-    debugger;
     wx.showModal({
       title: `是否删除该条数据？`,
-      success: function(){
+      success: function () {
         goodsService.deleteById(item.id).then(res => {
           wx.showToast({
             title: '删除成功',
@@ -101,7 +105,7 @@ Page({
           _this._loadData()
         })
       },
-      fail(){
+      fail() {
         debugger;
       }
     })

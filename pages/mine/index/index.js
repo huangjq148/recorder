@@ -19,11 +19,11 @@ Page({
       },
       {
         name: "新增交易记录",
-        url: "/pages/recorder/edit/index"
+        url: "/pages/trade/edit/index"
       },
       {
         name: "交易统计",
-        url: "/pages/recorder/statis/index"
+        url: "/pages/trade/statis/index"
       }
     ]
   },

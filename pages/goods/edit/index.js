@@ -7,7 +7,7 @@ Page({
    * 页面的初始数据
    */
   data: {
-
+    id: "",
     types: {
       "0": "进货",
       "1": "出货"
@@ -25,8 +25,11 @@ Page({
     let _this = this
     const { setFieldsValue } = $wuxForm()
     if(options.id){
+      _this.setData({
+        id: options.id
+      })
       goodsService.getInfoById(options.id).then(res => {
-        setFieldsValue(res)
+        setFieldsValue({...res, id: options.id})
       })
     }
   },
@@ -50,16 +53,31 @@ Page({
 
   //提交表单
   onSubmit() {
+    const {id} = this.data;
     const { getFieldsValue, getFieldValue, setFieldsValue } = $wuxForm()
     const value = getFieldsValue()
-    goodsService.save(value).then(res=>{
-      wx.showToast({
-        title: '保存成功',
+    
+    if(id){
+      goodsService.update({ ...value, id }).then(res=>{ 
+        wx.navigateBack({
+          delta: 1,
+          success(){
+            wx.showToast({
+              title: '保存成功',
+            })
+          }
+        })
       })
-      wx.navigateBack({
-        delta:1
+    }else{
+      goodsService.save(value).then(res => {
+        wx.showToast({
+          title: '保存成功',
+        })
+        wx.navigateBack({
+          delta: 1
+        })
       })
-    })
+    }
     console.log(value)
   },
 
