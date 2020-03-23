@@ -9,7 +9,7 @@
   </view>
   <view class="menus">
     <wux-cell-group title="带跳转的列表项">
-        <wux-cell wx:for="{{menus}}" title="{{item.name}}" is-link url="{{item.url}}"></wux-cell>
+        <wux-cell wx:for="{{menus}}" key="name" title="{{item.name}}" is-link url="{{item.url}}"></wux-cell>
     </wux-cell-group>
   </view>
 </view>

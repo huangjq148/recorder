@@ -1,7 +1,8 @@
 //app.js
-import { $wuxForm } from "./miniprogram_npm/wux-weapp/index"
+import { $wuxForm, $wuxSelect } from "./miniprogram_npm/wux-weapp/index"
 import config from "./config/index"
-import {request} from "./utils/request"
+import { request } from "./utils/request"
+import { EnumObj } from "./utils/enum"
 App({
   onLaunch: function () {
     // 展示本地存储能力
@@ -10,8 +11,10 @@ App({
     wx.setStorageSync('logs', logs)
 
     this.$wuxForm = $wuxForm
+    this.$wuxSelect = $wuxSelect
     this.config = config
     this.request = request
+    this.EnumObj = EnumObj
 
     // 登录
     wx.login({

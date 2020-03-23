@@ -1,5 +1,7 @@
 // pages/recorder/edit/index.js
-const { $wuxForm  } = getApp();
+const { $wuxForm, $wuxSelect, EnumObj } = getApp();
+const goodsService = require("../../../service/goods")
+const tradeService = require("../../../service/trade")
 Page({
 
   /**
@@ -7,12 +9,14 @@ Page({
    */
   data: {
 
-    types: {
-      "0":"进货",
-      "1":"出货"
+    tradeType: {
+      "0": "进货",
+      "1": "出货"
     },
-    formData:{
-      type:"0"
+    goods: [],
+    date: "2020-01-02",
+    formData: {
+      type: "0"
     }
   },
 
@@ -21,7 +25,35 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    this.setData({
+      tradeType: EnumObj["tradeType"]
+    })
+    goodsService.getGoodList().then(res => {
+      this.setData({
+        goods: res.resultObject.map(item => {
+          return { value: item.id, title: item.pinming + "---" + item.guige }
+        })
+      })
+    })
+  }, 
+  
+  //修改日期
+  onDatePickerChange(e) {
+    this.setData({ date: e.detail.label })
+  },
 
+  onClick1() {
+    const { setFieldsValue } = $wuxForm()
+    $wuxSelect('#wux-pinming').open({
+      value: this.data.value1,
+      options: this.data.goods,
+      onConfirm: (value, index, options) => {
+        console.log('onConfirm', value, index, options)
+        if (index !== -1) {
+          setFieldsValue({ goodsId: value, pinmingLabel: options[index].title})
+        }
+      },
+    })
   },
 
   onTypeChange(e) {
@@ -43,8 +75,19 @@ Page({
 
   //提交表单
   onSubmit() {
+    const _this = this;
     const { getFieldsValue, getFieldValue, setFieldsValue } = $wuxForm()
     const value = getFieldsValue()
+    tradeService.save(value).then(res=>{
+      wx.navigateBack({
+        detal: 1,
+        success(){
+          wx.showToast({
+            title: '保存成功',
+          })
+        }
+      })
+    })
     console.log(value)
   },
 
@@ -97,5 +140,5 @@ Page({
 
   },
 
-  
+
 })

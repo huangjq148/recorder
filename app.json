@@ -70,6 +70,9 @@
     "wux-wing-blank": "/miniprogram_npm/wux-weapp/wing-blank/index",
     "wux-swipe-action-group": "/miniprogram_npm/wux-weapp/swipe-action-group/index",
     "wux-swipe-action": "/miniprogram_npm/wux-weapp/swipe-action/index",
-    "wux-filterbar": "/miniprogram_npm/wux-weapp/filterbar/index"
+    "wux-sticky": "/miniprogram_npm/wux-weapp/sticky/index",
+    "wux-sticky-item": "/miniprogram_npm/wux-weapp/sticky-item/index",
+    "wux-filterbar": "/miniprogram_npm/wux-weapp/filterbar/index",
+    "wux-select": "/miniprogram_npm/wux-weapp/select/index"
   }
 }

@@ -1,10 +1,16 @@
 <!--index.wxml-->
 <view class="container">
-  <wux-search-bar clear maxlength="8" bind:change="onChange"/>
+  <wux-search-bar clear maxlength="8" bind:change="onChange" />
   <wux-filterbar items="{{ items }}" bind:change="onChangeFilter" bind:open="onOpen" bind:close="onClose" />
 
   <wux-cell-group>
-      <wux-cell wx:for="{{list}}" title="{{item.pinming}}" is-link url="../edit/index"  label="{{item.type}}：￥{{item.type=='进货'?item.purPrice:item.sellPrice}}" extra="{{item.date}}"></wux-cell>
+    <wux-cell class="list-item-{{item.type==0?'red':'green'}}" 
+      wx:for="{{list}}" 
+      title="{{goods[item.goodsId]}}" 
+      is-link 
+      url="../edit/index" 
+      label="{{tradeType[item.type]}}：￥{{item.price}}" 
+      extra="{{item.date}}"></wux-cell>
   </wux-cell-group>
 
   <wux-pagination current="{{ current }}" total="{{totalPage}}" mode="button" controlled bind:change="onChangePage">

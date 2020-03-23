@@ -1,5 +1,5 @@
 // pages/recorder/edit/index.js
-const { $wuxForm } = getApp();
+const { $wuxForm,$wuxSelect } = getApp();
 const goodsService = require("../../../service/goods")
 Page({
 
@@ -8,6 +8,7 @@ Page({
    */
   data: {
     id: "",
+    value1:"",
     types: {
       "0": "进货",
       "1": "出货"

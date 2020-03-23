@@ -61,6 +61,34 @@
 					"id": -1,
 					"name": "pages/recorder/statis/index",
 					"pathName": "pages/recorder/statis/index",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "pages/goods/edit/index",
+					"pathName": "pages/goods/edit/index",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "pages/trade/edit/index",
+					"pathName": "pages/trade/edit/index",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "pages/trade/edit/index",
+					"pathName": "pages/trade/edit/index",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "pages/trade/list/index",
+					"pathName": "pages/trade/list/index",
 					"scene": null
 				}
 			]

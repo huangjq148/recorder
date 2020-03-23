@@ -1,1 +1,20 @@
 /* pages/goods/index.wxss */
+
+.end-tips {
+  text-align: center;
+  padding: 10rpx;
+  color: gray;
+  font-size: 24rpx;
+}
+
+.search-wrap {
+  position: fixed;
+  top: 0;
+  z-index: 1;
+  width: 100%;
+  box-shadow: 0rpx 4rpx 4rpx #ddd;
+}
+
+.list-wrap {
+  padding-top: 88rpx;
+}

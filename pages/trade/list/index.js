@@ -1,7 +1,8 @@
 //index.js
 //获取应用实例
-const app = getApp()
+const { EnumObj} = getApp()
 const tradeService = require("../../../service/trade")
+const goodsService = require("../../../service/goods")
 
 Page({
   data: {
@@ -11,6 +12,8 @@ Page({
     pageSize: 10,
     totalPage: 10,
     keyword: "",
+    goodsMap: {},
+    tradeType: {},
     page: {
       currentPage: 1,
       pageSize: 9
@@ -51,8 +54,19 @@ Page({
   },
 
   onLoad: function() {
+    this.setData({
+      tradeType: EnumObj["tradeType"]
+    })
     this._loadData();
-    this._filterData();
+    goodsService.getGoodList().then(res => {
+      let obj = {}
+      res.resultObject.map(item => {
+        obj[item.id] = item.pinming
+      })
+      this.setData({
+        goods: obj
+      })
+    })
   },
 
   //加载数据

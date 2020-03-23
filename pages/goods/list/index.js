@@ -5,17 +5,18 @@ const goodsService = require("../../../service/goods")
 
 Page({
   data: {
-    originList: [],
     list: [],
     current: 1,
     totalPage: 10,
     keyword: "",
+    isEnd: false, 
+	scrollTop: 0,
     searchForm: {
 
     },
     page: {
       currentPage: 1,
-      pageSize: 9
+      pageSize: 15
     },
     right: [{
       text: '取消',
@@ -29,20 +30,31 @@ Page({
 
   onLoad: function () {
     this._loadData();
-    this._filterData();
+  },
+  onPageScroll(e) {
+    console.log('onPageScroll', e.scrollTop)
+    this.setData({
+      scrollTop: e.scrollTop,
+    })
   },
 
   //加载数据
   _loadData() {
     const _this = this;
-    const { searchForm, page } = this.data
-    debugger;
-    goodsService.getGoodList({ whereMap: searchForm, ...page }).then(res => {
-      _this.setData({
-        list: res.resultObject,
-        totalPage: Math.ceil(res.totalRecord / _this.data.page.pageSize)
+    let { searchForm, page, list, isEnd } = this.data
+    if(!isEnd){
+      goodsService.getGoodList({ whereMap: searchForm, ...page }).then(res => {
+        if (res.resultObject && res.resultObject.length < page.pageSize){
+          isEnd = true;
+        }
+        _this.setData({
+          isEnd,
+          list: list.concat(res.resultObject),
+          totalPage: Math.ceil(res.totalRecord / _this.data.page.pageSize)
+        })
+        this.selectComponent("#goodsContainer").updated()
       })
-    })
+    }
   },
 
   //过滤数据
@@ -63,10 +75,12 @@ Page({
   //输入框改变
   onChange(e) {
     this.setData({
+      list: [],
+      ["page.currentPage"]:1,
+      isEnd: false,
       ["searchForm.pinming_like"]: e.detail.value
     })
     this._loadData();
-    // this._filterData()
   },
 
   onChangeFilter() {
@@ -77,6 +91,23 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
+
+    this.setData({
+      list: [],
+      ["page.currentPage"]: 1,
+      isEnd: false
+    })
+    this._loadData();
+  },
+
+  /**
+   * 页面上拉触底事件的处理函数
+   */
+  onReachBottom: function () {
+    let {page} = this.data
+    this.setData({
+      'page.currentPage': page.currentPage + 1
+    })
     this._loadData()
   },
 
@@ -88,7 +119,6 @@ Page({
     })
 
     this._loadData();
-    this._filterData();
   },
 
   onClick(e) {
@@ -106,7 +136,6 @@ Page({
         })
       },
       fail() {
-        debugger;
       }
     })
   }

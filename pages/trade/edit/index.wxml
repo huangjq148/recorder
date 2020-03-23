@@ -1,30 +1,45 @@
 <!--pages/recorder/edit/index.wxml-->
+<wux-select id="wux-pinming" />
 <view class="page">
   <view class="header">
       新增交易记录
   </view>
   <wux-form bindsubmit="formSubmit" id="wux-form" bind:change="onFormFiledChange">
-    <wux-cell hover-class="none">
-      <wux-field name="pinming" initialValue="">
+    <wux-cell hover-class="none" style="hidden" bind:click="onClick1">
+      <wux-field name="goodsId" initialValue="" style="display:none;">
         <wux-input label="品名" />
       </wux-field>
+      <wux-field name="pinmingLabel" initialValue="">
+        <wux-input label="品名" readonly="{{true}}"/>
+      </wux-field>
     </wux-cell>
-    <wux-cell title="{{types[formData.type]}}">
-      <wux-field name="switch" initialValue="{{ 1 }}" valuePropName="inputChecked" slot="footer">
+    <wux-cell title="{{tradeType[formData.type]}}">
+      <wux-field name="type" initialValue="{{ 1 }}" min="0" valuePropName="inputChecked" slot="footer">
         <wux-switch />
       </wux-field>
     </wux-cell>
     <wux-cell title="数量" hover-class="none">
-      <wux-field name="number" initialValue="{{ 1 }}" color="light" slot="footer" disabled="{{ false }}">
-        <wux-input-number shape="circle" />
+      <wux-field name="number" initialValue="{{ 1 }}" slot="footer" min="0" color="light" disabled="{{ false }}">
+        <wux-input-number class="wux-sub-class" disabled="{{ false }}"  shape="circle" />
       </wux-field>
 
     </wux-cell>
     <wux-cell title="价格" hover-class="none">
-      <wux-field name="price" initialValue="{{ 1 }}" color="light" slot="footer" disabled="{{ false }}">
-        <wux-input-number shape="circle" />
+      <wux-field name="price" initialValue="{{ 1 }}"  disabled="{{ false }}"  color="light" slot="footer" disabled="{{ false }}">
+        <wux-input-number shape="circle" disabled="{{ false }}"  />
       </wux-field>
     </wux-cell>
+    <wux-field name="date" initialValue="{{ date }}">
+        <wux-date-picker bind:change="onDatePickerChange">
+            <wux-cell title="日期" is-link extra="{{ date }}"></wux-cell>
+        </wux-date-picker>
+    </wux-field>
+    <wux-cell title="备注"  hover-class="none">
+        <wux-field name="remark" initialValue="">
+            <wux-textarea rows="3" />
+        </wux-field>
+    </wux-cell>
+    
     <wux-button class="submit-btn" block type="positive" bindtap="onSubmit">提交</wux-button>
 
   </wux-form>

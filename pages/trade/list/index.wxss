@@ -19,3 +19,10 @@
 .usermotto {
   margin-top: 200px;
 }
+
+.list-item-red .wux-cell__desc{
+  color:red;
+}
+.list-item-green .wux-cell__desc{
+  color:rgb(19, 143, 19);
+}

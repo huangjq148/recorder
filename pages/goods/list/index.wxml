@@ -1,16 +1,21 @@
 <!--index.wxml-->
 <view class="container">
-  <wux-search-bar clear maxlength="8" bind:confirm="onChange"/>
+  <view class="search-wrap">
+    <wux-search-bar clear maxlength="8" bind:confirm="onChange" />
+  </view>
+  <view class="list-wrap">
+    <wux-cell-group>
+      <wux-swipe-action wx:for="{{list}}" wx:key="id" data-item="{{item}}" autoClose right="{{ right }}" bind:click="onClick">
+        <wux-cell title="{{item.pinming}}（规格：{{item.guige}}）" 
+          label="总价值：￥{{item.totalMoney}}，库存:{{item.stock}}"
+          is-link url="../edit/index?id={{item.id}}" 
+        ></wux-cell>
+      </wux-swipe-action>
 
-  <wux-cell-group>
-    <wux-swipe-action wx:for="{{list}}" data-item="{{item}}" autoClose right="{{ right }}" bind:click="onClick">
-        <wux-cell  title="{{item.pinming}}" is-link url="../edit/index?id={{item.id}}"  label="进价：{{item.jinjia}}，规格：{{item.guige}}"></wux-cell>
-    </wux-swipe-action>
-      
-  </wux-cell-group>
+    </wux-cell-group>
+  </view>
+  <view class="end-tips" wx:if="{{isEnd}}">
+    没有更多的了...
+  </view>
 
-  <wux-pagination current="{{ current }}" total="{{totalPage}}" mode="button" controlled bind:change="onChangePage">
-    <view slot="prev">Prev</view>
-    <view slot="next">Next</view>
-  </wux-pagination>
 </view>
