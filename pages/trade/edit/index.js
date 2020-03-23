@@ -8,16 +8,14 @@ Page({
    * 页面的初始数据
    */
   data: {
-
-    tradeType: {
-      "0": "进货",
-      "1": "出货"
-    },
-    goods: [],
+    //交易类型
+    tradeType: {},
+    //商品map
+    goodsMap: [],
+    //默认日期
     date: "2020-01-02",
-    formData: {
-      type: "0"
-    }
+    //进货/出货
+    type: false
   },
 
 
@@ -25,15 +23,35 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    let _this = this;
+    const { setFieldsValue,getFieldValue } = $wuxForm()
     this.setData({
-      tradeType: EnumObj["tradeType"]
+      tradeType: EnumObj["tradeType"],
+      date: (new Date()).toLocaleDateString().replace(/\//g, "-") 
     })
+    //请求所有商品
     goodsService.getGoodList().then(res => {
       this.setData({
-        goods: res.resultObject.map(item => {
+        goodsMap: res.resultObject.map(item => {
           return { value: item.id, title: item.pinming + "---" + item.guige }
         })
       })
+      
+      //如果有id，则请求交易记录信息
+      if (options.id) {
+        _this.setData({
+          id: options.id
+        })
+        tradeService.getInfoById(options.id).then(res => {
+          let pinmingLabel = "已删除"
+          let filterArr = _this.data.goodsMap.filter(item => { return item.value == res.goodsId })
+          if (filterArr.length>0){
+            pinmingLabel = filterArr[0].title
+          }
+          _this._changeSwitchVlue(res)
+          setFieldsValue({ ...res, pinmingLabel})
+        })
+      }
     })
   }, 
   
@@ -46,7 +64,7 @@ Page({
     const { setFieldsValue } = $wuxForm()
     $wuxSelect('#wux-pinming').open({
       value: this.data.value1,
-      options: this.data.goods,
+      options: this.data.goodsMap,
       onConfirm: (value, index, options) => {
         console.log('onConfirm', value, index, options)
         if (index !== -1) {
@@ -66,10 +84,23 @@ Page({
     })
   },
 
+  _changeSwitchVlue(item){
+
+    if (item.type === true || item.type === "1") {
+      this.setData({
+        type: true
+      })
+    } else if (item.type === false || item.type === "0") {
+      this.setData({
+        type: false
+      })
+    }
+  },
 
   onFormFiledChange(e) {
+    let _this = this
     const { form, changedValues, allValues } = e.detail
-
+    _this._changeSwitchVlue(changedValues)
     console.log('onChange \n', changedValues, allValues)
   },
 
@@ -78,16 +109,42 @@ Page({
     const _this = this;
     const { getFieldsValue, getFieldValue, setFieldsValue } = $wuxForm()
     const value = getFieldsValue()
-    tradeService.save(value).then(res=>{
-      wx.navigateBack({
-        detal: 1,
-        success(){
-          wx.showToast({
-            title: '保存成功',
-          })
-        }
+    let {id} = _this.data
+    if (value.type){
+      value.type = "1"
+    }else{
+      value.type = "0"
+    }
+    if (!value.goodsId){
+      wx.showToast({
+        title: '品名还未选择',
+        icon: 'none'
       })
-    })
+      return
+    }
+    if (id){
+      tradeService.update({...value, id}).then(res => {
+        wx.navigateBack({
+          detal: 1,
+          success() {
+            wx.showToast({
+              title: '保存成功',
+            })
+          }
+        })
+      })
+    }else{
+      tradeService.save(value).then(res => {
+        wx.navigateBack({
+          detal: 1,
+          success() {
+            wx.showToast({
+              title: '保存成功',
+            })
+          }
+        })
+      })
+    }
     console.log(value)
   },
 

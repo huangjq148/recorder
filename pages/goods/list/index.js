@@ -10,14 +10,15 @@ Page({
     totalPage: 10,
     keyword: "",
     isEnd: false, 
-	scrollTop: 0,
     searchForm: {
 
     },
+    //分页信息
     page: {
       currentPage: 1,
       pageSize: 15
     },
+    //左滑按钮
     right: [{
       text: '取消',
       style: 'background-color: #ddd; color: white',
@@ -31,12 +32,6 @@ Page({
   onLoad: function () {
     this._loadData();
   },
-  onPageScroll(e) {
-    console.log('onPageScroll', e.scrollTop)
-    this.setData({
-      scrollTop: e.scrollTop,
-    })
-  },
 
   //加载数据
   _loadData() {
@@ -49,8 +44,7 @@ Page({
         }
         _this.setData({
           isEnd,
-          list: list.concat(res.resultObject),
-          totalPage: Math.ceil(res.totalRecord / _this.data.page.pageSize)
+          list: list.concat(res.resultObject)
         })
         this.selectComponent("#goodsContainer").updated()
       })
@@ -91,7 +85,6 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-
     this.setData({
       list: [],
       ["page.currentPage"]: 1,
@@ -109,16 +102,6 @@ Page({
       'page.currentPage': page.currentPage + 1
     })
     this._loadData()
-  },
-
-  //分页改变
-  onChangePage(e) {
-    this.setData({
-      current: e.detail.current,
-      'page.currentPage': e.detail.current
-    })
-
-    this._loadData();
   },
 
   onClick(e) {

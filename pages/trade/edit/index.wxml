@@ -13,8 +13,8 @@
         <wux-input label="品名" readonly="{{true}}"/>
       </wux-field>
     </wux-cell>
-    <wux-cell title="{{tradeType[formData.type]}}">
-      <wux-field name="type" initialValue="{{ 1 }}" min="0" valuePropName="inputChecked" slot="footer">
+    <wux-cell title="{{tradeType[type?'1':'0']}}">
+      <wux-field name="type" value="{{ type }}"  valuePropName="inputChecked" slot="footer">
         <wux-switch />
       </wux-field>
     </wux-cell>
@@ -25,12 +25,12 @@
 
     </wux-cell>
     <wux-cell title="价格" hover-class="none">
-      <wux-field name="price" initialValue="{{ 1 }}"  disabled="{{ false }}"  color="light" slot="footer" disabled="{{ false }}">
+      <wux-field name="price" initialValue="{{ 1 }}" min="0"  disabled="{{ false }}"  color="light" slot="footer" disabled="{{ false }}">
         <wux-input-number shape="circle" disabled="{{ false }}"  />
       </wux-field>
     </wux-cell>
-    <wux-field name="date" initialValue="{{ date }}">
-        <wux-date-picker bind:change="onDatePickerChange">
+    <wux-field name="date" value="{{ date }}">
+        <wux-date-picker mode="date" bind:change="onDatePickerChange">
             <wux-cell title="日期" is-link extra="{{ date }}"></wux-cell>
         </wux-date-picker>
     </wux-field>

@@ -23,6 +23,14 @@
 .list-item-red .wux-cell__desc{
   color:red;
 }
+
 .list-item-green .wux-cell__desc{
   color:rgb(19, 143, 19);
+}
+
+.end-tips {
+  text-align: center;
+  padding: 10rpx;
+  color: gray;
+  font-size: 24rpx;
 }

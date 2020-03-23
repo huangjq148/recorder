@@ -4,17 +4,18 @@
   <wux-filterbar items="{{ items }}" bind:change="onChangeFilter" bind:open="onOpen" bind:close="onClose" />
 
   <wux-cell-group>
-    <wux-cell class="list-item-{{item.type==0?'red':'green'}}" 
-      wx:for="{{list}}" 
-      title="{{goods[item.goodsId]}}" 
-      is-link 
-      url="../edit/index" 
-      label="{{tradeType[item.type]}}：￥{{item.price}}" 
-      extra="{{item.date}}"></wux-cell>
+    <wux-swipe-action wx:for="{{list}}" wx:key="id" data-item="{{item}}" autoClose right="{{ right }}" bind:click="onClick">
+      <wux-cell class="list-item-{{item.type==0?'green':'red'}}" 
+        is-link 
+        url="../edit/index?id={{item.id}}" 
+        title="{{goodsMap[item.goodsId]}}" 
+        label="{{tradeType[item.type]}}：￥{{item.price}}，数量：{{item.number}}{{item.danwei}}" 
+        extra="{{item.date}}"></wux-cell>
+    </wux-swipe-action>
   </wux-cell-group>
 
-  <wux-pagination current="{{ current }}" total="{{totalPage}}" mode="button" controlled bind:change="onChangePage">
-    <view slot="prev">Prev</view>
-    <view slot="next">Next</view>
-  </wux-pagination>
+  <view class="end-tips" wx:if="{{isEnd}}">
+    没有更多的了...
+  </view>
+
 </view>

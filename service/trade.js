@@ -15,3 +15,26 @@ exports.save = function (data) {
     data
   })
 }
+
+exports.update = function (data) {
+  return request({
+    url: "/trade",
+    method: 'PUT',
+    data
+  })
+}
+
+exports.getInfoById = function (id) {
+  return request({
+    url: `/trade/${id}`,
+    method: 'get'
+  })
+}
+
+
+exports.deleteById = function (id) {
+  return request({
+    url: `/trade/${id}`,
+    method: 'delete'
+  })
+}

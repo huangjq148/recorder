@@ -18,6 +18,15 @@ Page({
       currentPage: 1,
       pageSize: 9
     },
+    //左滑按钮
+    right: [{
+      text: '取消',
+      style: 'background-color: #ddd; color: white',
+    },
+    {
+      text: '删除',
+      style: 'background-color: #F4333C; color: white',
+    }],
     items: [{
         type: 'radio',
         label: '交易类型',
@@ -61,10 +70,10 @@ Page({
     goodsService.getGoodList().then(res => {
       let obj = {}
       res.resultObject.map(item => {
-        obj[item.id] = item.pinming
+        obj[item.id] = `${item.pinming}(规格：${item.guige})`
       })
       this.setData({
-        goods: obj
+        goodsMap: obj
       })
     })
   },
@@ -72,12 +81,16 @@ Page({
   //加载数据
   _loadData() {
     const _this = this;
-    const page = _this.data.page
-    tradeService.getList({ ...page }).then(res => {
+    let { searchForm, page, list, isEnd } = _this.data
+    tradeService.getList({ whereMap: searchForm, ...page }).then(res => {
+      if (res.resultObject && res.resultObject.length < page.pageSize) {
+        isEnd = true;
+      }
       _this.setData({
-        list: res.resultObject,
-        totalPage: Math.ceil(res.totalRecord / _this.data.page.pageSize)
+        isEnd,
+        list: list.concat(res.resultObject)
       })
+      this.selectComponent("#goodsContainer").updated()
     })
   },
 
@@ -91,7 +104,6 @@ Page({
     })
 
     this.setData({
-      // current: 1,
       list
     })
   },
@@ -108,13 +120,51 @@ Page({
 
   },
 
-  //分页改变
-  onChangePage(e) {
-    this.setData({
-      current: e.detail.current,
+  onClick(e) {
+    if (e.detail.value.text == "取消") return;
+    let _this = this;
+    let { item } = e.currentTarget.dataset
+    wx.showModal({
+      title: `是否删除该条数据？`,
+      success: function () {
+        tradeService.deleteById(item.id).then(res => {
+          wx.showToast({
+            title: '删除成功',
+          })
+          _this._resetPageInfo()
+          _this._loadData()
+        })
+      },
+      fail() {
+      }
     })
+  },
 
+  /**
+   * 生命周期函数--监听页面显示
+   */
+  onShow: function () {
+    this._resetPageInfo()
     this._loadData();
-    this._filterData();
-  }
+  },
+
+  _resetPageInfo(){
+
+    this.setData({
+      list: [],
+      ["page.currentPage"]: 1,
+      isEnd: false
+    })
+  },
+
+  /**
+   * 页面上拉触底事件的处理函数
+   */
+  onReachBottom: function () {
+    let { page } = this.data
+    this.setData({
+      'page.currentPage': page.currentPage + 1
+    })
+    this._loadData()
+  },
 })

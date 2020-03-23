@@ -9,6 +9,13 @@ function request(options, retryTime = 2) {
     }).then(({statusCode,data})=>{
       if(statusCode == 200 && data && data.code == 200){
         return resolve(data.data)
+      } else {
+        wx.showModal({
+          title: '操作失败',
+          content: data.data,
+          showCancel: !1,
+          cancelText: "知道了"
+        })
       }
     }).catch(err=>{
       wx.showModal({
