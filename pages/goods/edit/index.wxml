@@ -1,7 +1,7 @@
 <!--pages/recorder/edit/index.wxml-->
 <view class="page">
   <view class="header">
-      新增商品信息
+      {{titleText}}商品信息
   </view>
   <wux-form bindsubmit="formSubmit" id="wux-form" bind:change="onFormFiledChange">
     <wux-cell hover-class="none">
@@ -19,11 +19,11 @@
         <wux-input label="单位" />
       </wux-field>
     </wux-cell>
-    <wux-cell hover-class="none">
+    <!-- <wux-cell hover-class="none">
       <wux-field name="jinjia" initialValue="">
         <wux-input label="进价" />
       </wux-field>
-    </wux-cell>
+    </wux-cell> -->
     <wux-cell hover-class="none">
       <wux-field name="remark" initialValue="">
         <wux-input label="备注" />

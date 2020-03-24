@@ -2,6 +2,7 @@
 const { $wuxForm, $wuxSelect, EnumObj } = getApp();
 const goodsService = require("../../../service/goods")
 const tradeService = require("../../../service/trade")
+import dayjs from "dayjs"
 Page({
 
   /**
@@ -13,9 +14,11 @@ Page({
     //商品map
     goodsMap: [],
     //默认日期
-    date: "2020-01-02",
+    tradeDate: dayjs().format("YYYY-MM-DD"),
     //进货/出货
-    type: false
+    type: false,
+    //标题栏文本
+    titleText:"新增"
   },
 
 
@@ -25,9 +28,14 @@ Page({
   onLoad: function (options) {
     let _this = this;
     const { setFieldsValue,getFieldValue } = $wuxForm()
+    setFieldsValue({ tradeDate: _this.data.tradeDate})
+    if (options.id) {
+      this.setData({
+        titleText: "编辑"
+      })
+    }
     this.setData({
-      tradeType: EnumObj["tradeType"],
-      date: (new Date()).toLocaleDateString().replace(/\//g, "-") 
+      tradeType: EnumObj["tradeType"]
     })
     //请求所有商品
     goodsService.getGoodList().then(res => {
@@ -57,8 +65,8 @@ Page({
   
   //修改日期
   onDatePickerChange(e) {
-    this.setData({ date: e.detail.label })
-  },
+    this.setData({ tradeDate: e.detail.label })
+  },  
 
   onClick1() {
     const { setFieldsValue } = $wuxForm()
@@ -123,7 +131,7 @@ Page({
       return
     }
     if (id){
-      tradeService.update({...value, id}).then(res => {
+      tradeService.update({ ...value, tradeDate: _this.data.tradeDate, id}).then(res => {
         wx.navigateBack({
           detal: 1,
           success() {
@@ -134,6 +142,7 @@ Page({
         })
       })
     }else{
+      value.tradeDate = _this.data.tradeDate
       tradeService.save(value).then(res => {
         wx.navigateBack({
           detal: 1,

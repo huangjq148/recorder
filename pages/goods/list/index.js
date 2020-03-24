@@ -30,7 +30,13 @@ Page({
   },
 
   onLoad: function () {
-    this._loadData();
+    // this._loadData();
+  },
+
+  handleClickTap(){
+    wx.navigateTo({
+      url: '/pages/goods/edit/index'
+    })
   },
 
   //加载数据
@@ -46,7 +52,12 @@ Page({
           isEnd,
           list: list.concat(res.resultObject)
         })
-        this.selectComponent("#goodsContainer").updated()
+        // this.selectComponent("#goodsContainer").updated()
+      })
+    } else {
+      wx.showToast({
+        title: '已经加载完所有数据了',
+        icon: 'none'
       })
     }
   },

@@ -2,7 +2,7 @@
 <wux-select id="wux-pinming" />
 <view class="page">
   <view class="header">
-      新增交易记录
+      {{titleText}}交易记录
   </view>
   <wux-form bindsubmit="formSubmit" id="wux-form" bind:change="onFormFiledChange">
     <wux-cell hover-class="none" style="hidden" bind:click="onClick1">
@@ -10,7 +10,7 @@
         <wux-input label="品名" />
       </wux-field>
       <wux-field name="pinmingLabel" initialValue="">
-        <wux-input label="品名" readonly="{{true}}"/>
+        <wux-input label="品名" disabled="{{true}}"/>
       </wux-field>
     </wux-cell>
     <wux-cell title="{{tradeType[type?'1':'0']}}">
@@ -29,9 +29,9 @@
         <wux-input-number shape="circle" disabled="{{ false }}"  />
       </wux-field>
     </wux-cell>
-    <wux-field name="date" value="{{ date }}">
-        <wux-date-picker mode="date" bind:change="onDatePickerChange">
-            <wux-cell title="日期" is-link extra="{{ date }}"></wux-cell>
+    <wux-field name="tradeDate" value="{{ tradeDate }}">
+        <wux-date-picker mode="date" value="{{tradeDate}}" bind:change="onDatePickerChange">
+            <wux-cell title="日期" is-link extra="{{ tradeDate }}"></wux-cell>
         </wux-date-picker>
     </wux-field>
     <wux-cell title="备注"  hover-class="none">

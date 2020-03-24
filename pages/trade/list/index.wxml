@@ -1,21 +1,42 @@
 <!--index.wxml-->
 <view class="container">
-  <wux-search-bar clear maxlength="8" bind:change="onChange" />
-  <wux-filterbar items="{{ items }}" bind:change="onChangeFilter" bind:open="onOpen" bind:close="onClose" />
-
-  <wux-cell-group>
-    <wux-swipe-action wx:for="{{list}}" wx:key="id" data-item="{{item}}" autoClose right="{{ right }}" bind:click="onClick">
-      <wux-cell class="list-item-{{item.type==0?'green':'red'}}" 
-        is-link 
-        url="../edit/index?id={{item.id}}" 
-        title="{{goodsMap[item.goodsId]}}" 
-        label="{{tradeType[item.type]}}：￥{{item.price}}，数量：{{item.number}}{{item.danwei}}" 
-        extra="{{item.date}}"></wux-cell>
-    </wux-swipe-action>
-  </wux-cell-group>
-
-  <view class="end-tips" wx:if="{{isEnd}}">
-    没有更多的了...
+  <view class="search-wrap">
+    <wux-search-bar clear maxlength="8" bind:confirm="onChange" />
   </view>
+
+  <view class="list-wrap">
+    <wux-fab-button position="bottomRight" theme="positive" buttons="{{ buttons }}" bind:click="handleClickTap" />
+
+    <wux-cell-group visible="{{ list.length > 0 }}">
+      <wux-swipe-action wx:for="{{list}}" wx:key="id" data-item="{{item}}" autoClose right="{{ right }}" bind:click="onClick">
+        <wux-cell class="list-item-{{item.type==0?'green':'red'}}" is-link url="../edit/index?id={{item.id}}" title="{{item.pinming}}" label="{{tradeType[item.type]}}：￥{{item.price}}，数量：{{item.number}}{{item.danwei}}" extra="{{item.tradeDate}}"></wux-cell>
+      </wux-swipe-action>
+    </wux-cell-group>
+
+    <wux-prompt visible="{{ list.length === 0 }}" title="空空如也" text="暂时没有相关数据" />
+    <view class="end-tips" wx:if="{{isEnd}}">
+      没有更多的了...
+    </view>
+  </view>
+
+  <wux-popup position="bottom" visible="{{ isShowMore }}" bind:close="handleCloseMore">
+    <wux-cell-group title="更多条件">
+      <wux-form id="wux-form">
+        <wux-field name="tradeDate_ge" initialValue="{{ tradeDate_ge }}">
+          <wux-date-picker mode="date" value="{{tradeDate_ge}}" data-index="2" data-mode="date" data-id="tradeDate_ge" bind:confirm="onSelectDate">
+            <wux-cell title="开始时间" is-link extra="{{ tradeDate_ge }}"></wux-cell>
+          </wux-date-picker>
+        </wux-field>
+        <wux-field name="tradeDate_le" initialValue="{{ tradeDate_le }}">
+          <wux-date-picker mode="date" value="{{tradeDate_le}}" data-index="2" data-mode="date" data-id="tradeDate_le" bind:confirm="onSelectDate">
+            <wux-cell title="结束时间" is-link extra="{{ tradeDate_le }}"></wux-cell>
+          </wux-date-picker>
+        </wux-field>
+      </wux-form>
+      <wux-cell hover-class="none">
+        <wux-button block type="balanced" bindtap="handleCloseMore">搜索</wux-button>
+      </wux-cell>
+    </wux-cell-group>
+  </wux-popup>
 
 </view>

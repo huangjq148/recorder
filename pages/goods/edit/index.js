@@ -9,6 +9,7 @@ Page({
   data: {
     id: "",
     value1:"",
+    titleText:"新增",
     types: {
       "0": "进货",
       "1": "出货"
@@ -27,7 +28,8 @@ Page({
     const { setFieldsValue } = $wuxForm()
     if(options.id){
       _this.setData({
-        id: options.id
+        id: options.id,
+        titleText: "编辑"
       })
       goodsService.getInfoById(options.id).then(res => {
         setFieldsValue({...res, id: options.id})

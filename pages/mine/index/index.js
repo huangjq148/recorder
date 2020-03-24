@@ -10,22 +10,31 @@ Page({
     canIUse: wx.canIUse('button.open-type.getUserInfo'),
     menus: [
       {
-        name: "查看登陆日志",
-        url: "/pages/logs/logs"
-      },
-      {
         name: "新增商品",
-        url: "/pages/goods/edit/index"
+        url: "/pages/goods/edit/index",
+        imgPath:"/images/mine/goods.png"
       },
       {
         name: "新增交易记录",
-        url: "/pages/trade/edit/index"
+        url: "/pages/trade/edit/index",
+        imgPath: "/images/mine/add_trade.png"
       },
       {
         name: "交易统计",
-        url: "/pages/trade/statis/index"
+        url: "/pages/trade/statis/index",
+        imgPath: "/images/mine/statistics.png"
+      },
+      {
+        name: "查看登陆日志",
+        url: "/pages/logs/logs",
+        imgPath: "/images/mine/logs.png"
       }
     ]
+  },
+  handleGridTap(e){
+    wx.navigateTo({
+      url: e.currentTarget.dataset.url,
+    })
   },
   //事件处理函数
   bindViewTap: function () {

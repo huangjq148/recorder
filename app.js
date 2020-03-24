@@ -8,6 +8,9 @@ App({
     // 展示本地存储能力
     var logs = wx.getStorageSync('logs') || []
     logs.unshift(Date.now())
+    if (logs.length > 50) {
+      logs.length = 50
+    }
     wx.setStorageSync('logs', logs)
 
     this.$wuxForm = $wuxForm

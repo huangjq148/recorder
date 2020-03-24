@@ -17,6 +17,7 @@
   },
   "homepage": "https://github.com/huangjq148/recorder#readme",
   "dependencies": {
+    "dayjs": "^1.8.23",
     "miniprogram-api-promise": "^1.0.4",
     "wux-weapp": "^3.8.5"
   }

@@ -7,9 +7,18 @@
       <text class="userinfo-nickname">{{userInfo.nickName}}</text>
     </block>
   </view>
-  <view class="menus">
+  <!-- <view class="menus">
     <wux-cell-group title="带跳转的列表项">
         <wux-cell wx:for="{{menus}}" key="name" title="{{item.name}}" is-link url="{{item.url}}"></wux-cell>
     </wux-cell-group>
-  </view>
+  </view> -->
+  <wux-white-space body-style="height: 40rpx" />
+  <wux-grids>
+     <wux-grid 
+     wx:for="{{menus}}"
+     thumb="{{item.imgPath}}" 
+     bind:click="handleGridTap"
+     data-url="{{item.url}}"
+     label="{{item.name}}" />
+  </wux-grids>
 </view>

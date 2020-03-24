@@ -18,4 +18,6 @@
     没有更多的了...
   </view>
 
+  <wux-fab-button actionRotate="{{false}}" position="bottomRight" theme="positive" bind:change="handleClickTap" />
+
 </view>

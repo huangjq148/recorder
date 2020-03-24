@@ -73,6 +73,13 @@
     "wux-sticky": "/miniprogram_npm/wux-weapp/sticky/index",
     "wux-sticky-item": "/miniprogram_npm/wux-weapp/sticky-item/index",
     "wux-filterbar": "/miniprogram_npm/wux-weapp/filterbar/index",
-    "wux-select": "/miniprogram_npm/wux-weapp/select/index"
+    "wux-select": "/miniprogram_npm/wux-weapp/select/index",
+    "wux-icon": "/miniprogram_npm/wux-weapp/icon/index",
+    "wux-grids": "/miniprogram_npm/wux-weapp/grids/index",
+    "wux-grid": "/miniprogram_npm/wux-weapp/grid/index",
+    "wux-white-space": "/miniprogram_npm/wux-weapp/white-space/index",
+    "wux-fab-button": "/miniprogram_npm/wux-weapp/fab-button/index",
+    "wux-prompt": "/miniprogram_npm/wux-weapp/prompt/index",
+    "wux-popup": "/miniprogram_npm/wux-weapp/popup/index"
   }
 }
