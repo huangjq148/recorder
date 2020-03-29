@@ -80,6 +80,7 @@
     "wux-white-space": "/miniprogram_npm/wux-weapp/white-space/index",
     "wux-fab-button": "/miniprogram_npm/wux-weapp/fab-button/index",
     "wux-prompt": "/miniprogram_npm/wux-weapp/prompt/index",
-    "wux-popup": "/miniprogram_npm/wux-weapp/popup/index"
+    "wux-popup": "/miniprogram_npm/wux-weapp/popup/index",
+    "wux-segmented-control": "/miniprogram_npm/wux-weapp/segmented-control/index"
   }
 }

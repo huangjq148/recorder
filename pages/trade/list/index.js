@@ -4,29 +4,25 @@ const { EnumObj, $wuxForm } = getApp()
 const tradeService = require("../../../service/trade")
 const goodsService = require("../../../service/goods")
 import dayjs from "dayjs"
-const icon = 'data:image/png;base64,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'
-
-// import img from "./add_trade.png"
-// let img = require("./add_trade.png")
+import {icons} from "./icon.js"
 
 Page({
   data: {
-    originList: [],
     list: [],
-    current: 1,
-    pageSize: 10,
-    totalPage: 10,
-    keyword: "",
+    current: 1, 
     tradeType: {},
+    type:"0",
+    searchForm:{},
+    //加号点击的扩展按钮
     buttons: [
       {
         label: '新增交易记录',
-        icon,
+        icon: icons.addIcon,
         action: "addTrade"
       },
       {
         label: '显示查询条件',
-        icon,
+        icon: icons.searchIcon,
         action: "chooseCondition"
       }
     ],
@@ -61,6 +57,7 @@ Page({
     })
   },
 
+  //关闭弹层时进行搜索
   handleCloseMore() {
     this.setData({
       isShowMore: false,
@@ -68,9 +65,53 @@ Page({
     this._resetPageInfo()
     const { setFieldsValue, getFieldsValue } = $wuxForm()
     let value = getFieldsValue()
+    if (value.type) {
+      value.type = "1"
+    } else {
+      value.type = "0"
+    }
     this._loadData();
   },
 
+  onFormFiledChange(e) {
+    let _this = this
+    const { form, changedValues, allValues } = e.detail
+    _this._changeSwitchVlue(changedValues)
+    console.log('onChange \n', changedValues, allValues)
+  },
+
+  //选择分类改变的时候
+  handleControlChange(e){
+    let text = e.detail.values[e.detail.key]
+    let value = ""
+    switch (text) {
+      case "全部":
+        delete this.data.searchForm.type;
+        break;
+      case "进货":
+        this.data.searchForm.type = "0"
+        break;
+      case "出货":
+        this.data.searchForm.type = "1"
+        break;
+    }
+  },
+
+  //改变switch的值
+  _changeSwitchVlue(item) {
+
+    if (item.type === true || item.type === "1") {
+      this.setData({
+        type: true
+      })
+    } else if (item.type === false || item.type === "0") {
+      this.setData({
+        type: false
+      })
+    }
+  },
+
+  //搜索条件中的日期选择事件
   onSelectDate(e) {
     this.setData({
       [e.currentTarget.dataset.id]: e.detail.label,
@@ -78,6 +119,7 @@ Page({
     })
   },
 
+  //点击浮动按钮时，根据条件跳转对应方法
   handleClickTap(e) {
     let fn = e.detail.buttons[e.detail.index].action
     this[fn]()
@@ -127,20 +169,23 @@ Page({
     this._loadData()
   },
 
+  //左滑删除事件
   onClick(e) {
     if (e.detail.value.text == "取消") return;
     let _this = this;
     let { item } = e.currentTarget.dataset
     wx.showModal({
       title: `是否删除该条数据？`,
-      success: function () {
-        tradeService.deleteById(item.id).then(res => {
-          wx.showToast({
-            title: '删除成功',
+      success: function (result) {
+        if (result.confirm) {
+          tradeService.deleteById(item.id).then(res => {
+            wx.showToast({
+              title: '删除成功',
+            })
+            _this._resetPageInfo()
+            _this._loadData()
           })
-          _this._resetPageInfo()
-          _this._loadData()
-        })
+        }
       },
       fail() {
       }
@@ -155,6 +200,7 @@ Page({
     this._loadData();
   },
 
+  //重置表格分页信息
   _resetPageInfo() {
 
     this.setData({

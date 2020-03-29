@@ -19,14 +19,14 @@
       </wux-field>
     </wux-cell>
     <wux-cell title="数量" hover-class="none">
-      <wux-field name="number" initialValue="{{ 1 }}" slot="footer" min="0" color="light" disabled="{{ false }}">
-        <wux-input-number class="wux-sub-class" disabled="{{ false }}"  shape="circle" />
+      <wux-field name="number" initialValue="{{ 1 }}" slot="footer" color="light" disabled="{{ false }}">
+        <wux-input-number class="wux-sub-class" disabled="{{ false }}" min="{{ 0 }}"  shape="circle" />
       </wux-field>
 
     </wux-cell>
     <wux-cell title="价格" hover-class="none">
-      <wux-field name="price" initialValue="{{ 1 }}" min="0"  disabled="{{ false }}"  color="light" slot="footer" disabled="{{ false }}">
-        <wux-input-number shape="circle" disabled="{{ false }}"  />
+      <wux-field name="price" initialValue="{{ 1 }}" disabled="{{ false }}"  color="light" slot="footer" disabled="{{ false }}">
+        <wux-input-number shape="circle" min="{{ 0 }}" disabled="{{ false }}"  />
       </wux-field>
     </wux-cell>
     <wux-field name="tradeDate" value="{{ tradeDate }}">

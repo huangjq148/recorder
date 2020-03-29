@@ -38,3 +38,11 @@ exports.deleteById = function (id) {
     method: 'delete'
   })
 }
+
+exports.getStatistics = function(data){
+  return request({
+    url: `/trade/statistics`,
+    method: 'post',
+    data
+  })
+}

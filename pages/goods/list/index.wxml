@@ -14,7 +14,8 @@
 
     </wux-cell-group>
   </view>
-  <view class="end-tips" wx:if="{{isEnd}}">
+  <wux-prompt visible="{{ list.length === 0 }}" title="空空如也" text="暂时没有相关数据" />
+  <view class="end-tips" wx:if="{{isEnd && list.length > 0}}">
     没有更多的了...
   </view>
 

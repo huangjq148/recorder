@@ -5,21 +5,33 @@
       交易总览
     </view>
   </wux-wing-blank>
+
+  <wux-wing-blank size="default">
+    <wux-date-picker mode="date" data-id="tradeDate_ge" value="{{ whereMap.tradeDate_ge }}" data-index="2" data-mode="date" bind:confirm="onConfirm">
+      <wux-cell title="起始时间" is-link extra="{{ whereMap.tradeDate_ge }}"></wux-cell>
+    </wux-date-picker>
+    <wux-date-picker mode="date" data-id="tradeDate_le" value="{{ whereMap.tradeDate_le }}" data-index="2" data-mode="date" bind:confirm="onConfirm">
+      <wux-cell title="结束时间" data-id="" is-link extra="{{ whereMap.tradeDate_le }}"></wux-cell>
+    </wux-date-picker>
+  </wux-wing-blank>
+  <view style="height:20rpx;background-color:#eee;">
+  </view>
+
   <wux-wing-blank size="default">
     <wux-card title="本月支出" bordered="{{ false }}">
-      <view slot="body">￥8040.00</view>
+      <view slot="body">￥{{info.purTotal}}</view>
     </wux-card>
   </wux-wing-blank>
 
   <wux-wing-blank size="default" class="margin-top-100">
     <wux-card title="本月收入" bordered="{{ false }}">
-      <view slot="body">￥4040.00</view>
+      <view slot="body">￥{{info.sellTotal}}</view>
     </wux-card>
   </wux-wing-blank>
 
   <wux-wing-blank size="default" class="margin-top-100">
     <wux-card title="本月利润" bordered="{{ false }}">
-      <view slot="body">￥-4000.00</view>
+      <view slot="body">￥{{info.profitTotal}}</view>
     </wux-card>
   </wux-wing-blank>
 </view>

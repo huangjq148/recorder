@@ -18,15 +18,15 @@ function request(options, retryTime = 2) {
         })
       }
     }).catch(err=>{
-      debugger;
-      wx.showModal({
-        title: '温馨提示',
-        content: '当前人数较多，请稍后再试',
-        showCancel: false,
-        success: () => {
-          // showGlobalModal = false
-        }
-      })
+      // wx.showModal({
+      //   title: '温馨提示',
+      //   content: '当前人数较多，请稍后再试',
+      //   showCancel: false,
+      //   success: () => {
+      //     // showGlobalModal = false
+      //   }
+      // })
+      cosole.error("请求出错")
       return reject(err)
     })
   })

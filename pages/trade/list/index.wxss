@@ -46,4 +46,6 @@
 
 .list-wrap {
   padding-top: 88rpx;
+  height: calc(100% - 88rpx);
+
 }

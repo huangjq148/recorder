@@ -96,6 +96,13 @@
 					"id": -1,
 					"name": "pages/mine/index/index",
 					"pathName": "pages/mine/index/index",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "pages/trade/statis/index",
+					"pathName": "pages/trade/statis/index",
 					"scene": null
 				}
 			]

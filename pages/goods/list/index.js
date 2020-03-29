@@ -101,6 +101,10 @@ Page({
       ["page.currentPage"]: 1,
       isEnd: false
     })
+    wx.pageScrollTo({
+      scrollTop: 0,
+      duration: 0
+    })
     this._loadData();
   },
 
